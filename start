@@ -1,5 +1,5 @@
 #!/bin/bash
 set -e
 
-chown -R mongodb:mongodb /var/lib/mongodb
+chown -R mongodb:mongodb /data/db/mongo
 exec sudo -u mongodb -H /usr/bin/mongod --config /etc/mongod.conf --httpinterface --rest

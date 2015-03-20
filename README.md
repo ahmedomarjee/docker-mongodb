@@ -8,6 +8,8 @@
 - [Upgrading](#upgrading)
 
 # Introduction
+This is forked from https://github.com/sameersbn/docker-mongodb.
+
 Dockerfile to build a MongoDb container image which can be linked to other containers.
 
 # Contributing
@@ -15,21 +17,20 @@ Dockerfile to build a MongoDb container image which can be linked to other conta
 If you find this image useful here's how you can help:
 
 - Send a Pull Request with your awesome new features and bug fixes
-- Help new users with [Issues](https://github.com/sameersbn/docker-mongodb/issues) they may encounter
-- Send me a tip via [Bitcoin](https://www.coinbase.com/sameersbn) or using [Gratipay](https://gratipay.com/sameersbn/)
+- Help new users with [Issues](https://github.com/ahmedomarjee/docker-mongodb/issues) they may encounter
 
 # Installation
 
 Pull the latest version of the image from the docker index. This is the recommended method of installation as it is easier to update image in the future. These builds are performed by the **Docker Trusted Build** service.
 
 ```
-docker pull sameersbn/mongodb:latest
+docker pull ahmedomarjee/mongodb:latest
 ```
 
 Alternately you can build the image yourself.
 
 ```
-git clone https://github.com/sameersbn/docker-mongodb.git
+git clone https://github.com/ahmedomarjee/docker-mongodb.git
 cd docker-mongodb
 docker build -t="$USER/mongodb" .
 ```
@@ -38,7 +39,7 @@ docker build -t="$USER/mongodb" .
 Run the mongodb image
 
 ```
-docker run --name mongodb -d sameersbn/mongodb:latest
+docker run --name mongodb -d ahmedomarjee/mongodb:latest
 ```
 
 To test if the mongodb server is configured properly, try connecting to the server.
@@ -48,12 +49,12 @@ mongo $(docker inspect --format {{.NetworkSettings.IPAddress}} mongodb)
 ```
 
 # Data Store
-You should mount a volume at /var/lib/mongodb.
+You should mount a volume at /data/db/mongo.
 
 ```
 mkdir -p /opt/mongodb
 docker run -name mongodb -d \
-  -v /opt/mongodb:/var/lib/mongodb sameersbn/mongodb:latest
+  -v /opt/mongodb:/data/db/mongo ahmedomarjee/mongodb:latest
 ```
 
 This will make sure that the data stored in the database is not lost when the image is stopped and started again.
@@ -97,11 +98,11 @@ docker stop mongodb
 - **Step 2**: Update the docker image.
 
 ```
-docker pull sameersbn/mongodb:latest
+docker pull ahmedomarjee/mongodb:latest
 ```
 
 - **Step 3**: Start the image
 
 ```
-docker run -name mongodb -d [OPTIONS] sameersbn/mongodb:latest
+docker run -name mongodb -d [OPTIONS] ahmedomarjee/mongodb:latest
 ```

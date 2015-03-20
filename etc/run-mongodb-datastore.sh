@@ -1,0 +1,1 @@
+docker run --name mongodb_datastore zailab/datastore:latest
